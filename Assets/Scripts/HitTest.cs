@@ -24,14 +24,17 @@ namespace UnityEngine.XR.iOS
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultTypes);
             if (hitResults.Count > 0) {
                 foreach (var hitResult in hitResults) {
+                    playerTransform.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
+                    playerTransform.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
+                    
+                    // TRYING TO ROTATE IT TO THE PLANE HIT
+                    // DOESNT WORK?
                     if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeVerticalPlane){
                         playerTransform.eulerAngles = new Vector3(0,0,0);
                     }
                     if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeHorizontalPlane){
                         playerTransform.eulerAngles = new Vector3(90,0,0);
                     }
-                    playerTransform.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
-                    playerTransform.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
                 }
             }
         }
