@@ -9,13 +9,13 @@ namespace UnityEngine.XR.iOS
         public GameObject playerObject;
 
         Transform playerTransform;
-        Player playerScript;
+        PlayerDup playerScript;
         Line activeLine;
 
 
         void Start(){
             playerTransform = playerObject.GetComponent<Transform>();
-            playerScript = playerObject.GetComponent<Player>();
+            playerScript = playerObject.GetComponent<PlayerDup>();
         }
 
 
@@ -25,16 +25,16 @@ namespace UnityEngine.XR.iOS
             if (hitResults.Count > 0) {
                 foreach (var hitResult in hitResults) {
                     playerTransform.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
-                    playerTransform.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
+                    //playerTransform.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
                     
                     // TRYING TO ROTATE IT TO THE PLANE HIT
                     // DOESNT WORK?
-                    if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeVerticalPlane){
-                        playerTransform.eulerAngles = new Vector3(0,0,0);
-                    }
-                    if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeHorizontalPlane){
-                        playerTransform.eulerAngles = new Vector3(90,0,0);
-                    }
+                    // if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeVerticalPlane){
+                    //     playerTransform.eulerAngles = new Vector3(0,0,0);
+                    // }
+                    // if(hitResult.type == ARHitTestResultType.ARHitTestResultTypeHorizontalPlane){
+                    //     playerTransform.eulerAngles = new Vector3(90,0,0);
+                    // }
                 }
             }
         }
@@ -65,13 +65,15 @@ namespace UnityEngine.XR.iOS
                 ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
                 // if you want to use infinite planes use this:
                 //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-                ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
+                ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
+                //ARHitTestResultType.ARHitTestResultTypeVerticalPlane, 
                 ARHitTestResultType.ARHitTestResultTypeFeaturePoint
             };
 
-
+            // center of screen, "cast ray" and place player at first hit
+            // if player is not running
             if(!playerScript.isRunning){
-                // center of screen, "cast ray" and place player at first hit
+                
                 var centerPosition = Camera.main.ScreenToViewportPoint(new Vector2(Screen.width/2f,Screen.height/2f));
                 ARPoint cPoint = new ARPoint {
                     x = centerPosition.x,
@@ -123,6 +125,46 @@ namespace UnityEngine.XR.iOS
                 }
 
 			}
+
+            
+			if (Input.GetMouseButtonDown(0))
+			{
+
+                // run if started touching or moving touch
+				if (Input.GetMouseButtonDown(0))
+				{
+
+                    if(Input.GetMouseButtonDown(0)){
+                        Debug.Log("Started touching, created new line");
+                        // create a new line
+                        GameObject lineGO = Instantiate(linePrefab);
+			            activeLine = lineGO.GetComponent<Line>();
+                    }
+
+                    Vector3 screenPosition; 
+                    screenPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
+					ARPoint point = new ARPoint {
+						x = screenPosition.x,
+						y = screenPosition.y
+					};
+
+                    foreach (ARHitTestResultType resultType in resultTypes)
+                    {
+                        if (HitTestWithResultTypeLine(point, resultType))
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                // stop adding to the activeline (disable it)
+                Debug.Log("Touch ended");
+                activeLine = null;
+            }
 		}
 
 	

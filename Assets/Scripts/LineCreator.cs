@@ -12,6 +12,7 @@ public class LineCreator : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown(0) || (Input.GetTouch(0).phase == TouchPhase.Began))
 		{
+			print("mousedown");
 			GameObject lineGO = Instantiate(linePrefab);
 			activeLine = lineGO.GetComponent<Line>();
 		}
@@ -23,7 +24,7 @@ public class LineCreator : MonoBehaviour {
 
 		if (activeLine != null)
 		{
-			Vector2 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 			activeLine.UpdateLine(pos);
 		} 
 

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	public Rigidbody rb {
-		get { return GetComponent<Rigidbody>();}
+	public Rigidbody2D rb {
+		get { return GetComponent<Rigidbody2D>();}
 	}
 	public bool isRunning = false;
+	public PlayerDup playerDup;
+	private GameObject shadowPlayer;
 
-	void Update ()
+	void Start() {
+		shadowPlayer = playerDup.gameObject;
+	}
+	void Update()
 	{
 		// if (Input.GetButtonDown("Play"))
 		// {
@@ -17,15 +22,24 @@ public class Player : MonoBehaviour {
 		// }
 	}
 
+	private void transformPlayer(){
+		Vector3 shadow = shadowPlayer.transform.position;
+		gameObject.transform.position = new Vector3(shadow.x+1000, shadow.z+1000, -shadow.y);
+		gameObject.transform.eulerAngles = new Vector3(0, 0, -shadowPlayer.transform.eulerAngles.y); 
+	}
+
 	public void runPlayer(){
+		transformPlayer();
 		Debug.Log("runPlayer");
-		rb.isKinematic = false;
+		rb.bodyType = RigidbodyType2D.Dynamic;
 		isRunning = true;
+		playerDup.runPlayer();
 	}
 
 	public void reset(){
 		isRunning = false;
-		rb.isKinematic = true;
+		playerDup.reset();
+		rb.bodyType = RigidbodyType2D.Static;
 	}
 
 }

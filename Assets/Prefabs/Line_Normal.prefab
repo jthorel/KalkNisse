@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4428838446853282}
   - component: {fileID: 120134565816684696}
   - component: {fileID: 114553290024546926}
-  - component: {fileID: 64292522926261210}
+  - component: {fileID: 68657418133466040}
+  - component: {fileID: 252859549709043778}
   m_Layer: 0
   m_Name: Line_Normal
   m_TagString: Untagged
@@ -42,20 +43,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &64292522926261210
-MeshCollider:
+--- !u!68 &68657418133466040
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958155713448096}
-  m_Material: {fileID: 13400000, guid: 3aa14651cff1e41f8a5b7b036bb2f24c, type: 2}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 79a156d529b8c9e49bc8f6c6ef6b0e8e, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.04000002, y: 0}
+  - {x: 1.04, y: 0}
 --- !u!114 &114553290024546926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,7 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 120134565816684696}
-  edgeCol: {fileID: 0}
 --- !u!120 &120134565816684696
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -108,7 +111,7 @@ LineRenderer:
   - {x: 1, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.08
+    widthMultiplier: 0.005
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -157,3 +160,20 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!252 &252859549709043778
+SurfaceEffector2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958155713448096}
+  m_Enabled: 0
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Speed: 8
+  m_SpeedVariation: 0
+  m_ForceScale: 0.1
+  m_UseContactForce: 0
+  m_UseFriction: 1
+  m_UseBounce: 1
