@@ -25,7 +25,8 @@ public class Player : MonoBehaviour {
 	private void transformPlayer(){
 		Vector3 shadow = shadowPlayer.transform.position;
 		gameObject.transform.position = new Vector3(shadow.x+1000, shadow.z+1000, -shadow.y);
-		gameObject.transform.eulerAngles = new Vector3(0, 0, -shadowPlayer.transform.eulerAngles.y); 
+
+		gameObject.transform.eulerAngles = new Vector3(0, 0, -shadowPlayer.transform.eulerAngles.y);
 	}
 
 	public void toggleRunning(){
