@@ -31,38 +31,40 @@ namespace UnityEngine.XR.iOS
 		public Sprite spriteDefault;
 		public Sprite spriteChanged;
 
+		public bool linesWereHidden = false;
+
 		// Use this for initialization
 		void Start () {
 
 		}
 
-		public void restartScene() {
-			SceneManager.LoadScene(0);
-		}
-
-		public void hideLines() {
+		public void hideLines(bool changeSprite) {
 
 			enabledLines = !enabledLines;
 			GameObject[] lines = GameObject.FindGameObjectsWithTag("lineRenderer");
 
-			GameObject sprite = GameObject.Find("SaveLine");
-			Image spriteImage = sprite.GetComponent<Image>();
-			if(enabledLines) {
-				spriteImage.sprite = spriteChanged;
-			} else {
-				spriteImage.sprite = spriteDefault;
+			if(changeSprite) {
+				GameObject sprite = GameObject.Find("SaveLine");
+				Image spriteImage = sprite.GetComponent<Image>();
+
+				if(enabledLines) {
+					spriteImage.sprite = spriteChanged;
+				} else {
+					spriteImage.sprite = spriteDefault;
+				}
 			}
 
 			foreach (GameObject line in lines)
 			{
 				LineRenderer lr = line.GetComponent<LineRenderer>();
-							lr.enabled = enabledLines;
+				lr.enabled = enabledLines;
 			}
 
 		}
 
 
 		public void saveLine(){
+			hideLines(false);
 			GameManager.instance.hideGame();
 			StartCoroutine(CaptureScreenshot("screenshot", ScreenshotFormat.PNG));
 		}
@@ -207,6 +209,8 @@ namespace UnityEngine.XR.iOS
 			// //Save image to file
 			// System.IO.File.WriteAllBytes(filePath, imageBytes);
 			// Debug.Log("Saved Data to: " + filePath.Replace("/", "\\"));
+			
+			hideLines(false);
 			GameManager.instance.startGame();
 		}
 
@@ -219,7 +223,7 @@ namespace UnityEngine.XR.iOS
 			//LineRenderer lineR = Line.GetComponent<LineRenderer>();
 			GameObject lineGO = Instantiate(linePrefab);
 			activeLine = lineGO.GetComponent<Line>();
-
+			lineGO.GetComponent<LineRenderer>().enabled = enabledLines;
 
             ARHitTestResultType[] resultTypes = {
                 ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,

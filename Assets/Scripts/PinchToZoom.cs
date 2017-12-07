@@ -31,7 +31,6 @@ public class PinchToZoom : MonoBehaviour {
 			GameObject realPlayer = GameObject.FindGameObjectWithTag("realPlayer");
 			GameObject duplicatePlayer = GameObject.FindGameObjectWithTag("duplicatePlayer");
 
-			Vector3 scaleVectorReal = realPlayer.transform.localScale + new Vector3(1,1,1) * deltaMagnitudeDiff;
 			Vector3 scaleVector = new Vector3(1,1,1) * -deltaMagnitudeDiff * 0.0001f;
 
 			realPlayer.transform.localScale += scaleVector;
