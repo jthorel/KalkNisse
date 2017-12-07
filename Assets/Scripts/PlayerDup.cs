@@ -8,6 +8,8 @@ public class PlayerDup : MonoBehaviour {
 	public GameObject shadowPlayer;
 	public bool isRunning = false;
 	private Quaternion _facing;
+	public float gravityKoeff = 1.82f;
+
 
 	void Start(){
 		_facing = transform.rotation;
@@ -17,11 +19,7 @@ public class PlayerDup : MonoBehaviour {
 	{
 		transformPlayer();
 		rotatePlayer();
-	
-		// if (Input.GetButtonDown("Play"))
-		// {
-		// 	runPlayer();
-		// }
+		gravityKoeff = transform.localScale.x * 91f;
 	}
 
 	private void rotatePlayer(){
@@ -47,7 +45,7 @@ public class PlayerDup : MonoBehaviour {
 
 
 	public void runPlayer(){
-		Physics2D.gravity = (new Vector2(transform.up.x, transform.up.z).normalized*-3.82f);
+		Physics2D.gravity = (new Vector2(transform.up.x, transform.up.z).normalized*-gravityKoeff);
 		isRunning = true;
 	}
 
