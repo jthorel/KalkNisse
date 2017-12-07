@@ -22,7 +22,7 @@ public class Line : MonoBehaviour {
 			return;
 		}
 
-		if (Vector3.Distance(points.Last(), mousePos) > .001f)
+		//if (Vector3.Distance(points.Last(), mousePos) > .001f)
 			SetPoint(mousePos);
 	}
 
