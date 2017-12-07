@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61557714004952196}
   m_Layer: 8
   m_Name: PlayerPhysics
-  m_TagString: Untagged
+  m_TagString: realPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

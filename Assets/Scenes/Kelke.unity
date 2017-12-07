@@ -659,10 +659,6 @@ Prefab:
       propertyPath: playerDup
       value: 
       objectReference: {fileID: 2098319102}
-    - target: {fileID: 1674298366799846, guid: 51f6c901693054ef697d0cad80a2f8d6, type: 2}
-      propertyPath: m_Name
-      value: PlayerPhysics
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51f6c901693054ef697d0cad80a2f8d6, type: 2}
   m_IsPrefabParent: 0
@@ -1585,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595911199}
   - component: {fileID: 1595911200}
+  - component: {fileID: 1595911201}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1619,6 +1616,17 @@ MonoBehaviour:
   player: {fileID: 2098319099}
   canvas: {fileID: 1595077749}
   running: 0
+--- !u!114 &1595911201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1595911198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6014bfd1ff6646c0878c01c7d1ae4f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1620929900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,10 +1723,6 @@ Prefab:
       propertyPath: shadowPlayer
       value: 
       objectReference: {fileID: 1528428880}
-    - target: {fileID: 1086669302004562, guid: edf3627a1e5e943c7acb0f9c9b50ba3f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edf3627a1e5e943c7acb0f9c9b50ba3f, type: 2}
   m_IsPrefabParent: 0
