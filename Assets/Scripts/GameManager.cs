@@ -33,4 +33,10 @@ public class GameManager : MonoBehaviour {
 		canvas.SetActive(true);
 		player.SetActive(true);
 	}
+
+	public void hideGame(){
+		running = false;
+		canvas.SetActive(false);
+		player.SetActive(false);
+	}
 }

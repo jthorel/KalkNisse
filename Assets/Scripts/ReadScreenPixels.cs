@@ -42,35 +42,35 @@ namespace UnityEngine.XR.iOS
 
 		public void hideLines() {
 
-				enabledLines = !enabledLines;
-				GameObject[] lines = GameObject.FindGameObjectsWithTag("lineRenderer");
+			enabledLines = !enabledLines;
+			GameObject[] lines = GameObject.FindGameObjectsWithTag("lineRenderer");
 
-				GameObject sprite = GameObject.Find("SaveLine");
-				Image spriteImage = sprite.GetComponent<Image>();
-				if(enabledLines) {
-					spriteImage.sprite = spriteChanged;
-				} else {
-					spriteImage.sprite = spriteDefault;
-				}
+			GameObject sprite = GameObject.Find("SaveLine");
+			Image spriteImage = sprite.GetComponent<Image>();
+			if(enabledLines) {
+				spriteImage.sprite = spriteChanged;
+			} else {
+				spriteImage.sprite = spriteDefault;
+			}
 
-        foreach (GameObject line in lines)
-        {
-            LineRenderer lr = line.GetComponent<LineRenderer>();
-						lr.enabled = enabledLines;
-        }
+			foreach (GameObject line in lines)
+			{
+				LineRenderer lr = line.GetComponent<LineRenderer>();
+							lr.enabled = enabledLines;
+			}
 
 		}
 
+
 		public void saveLine(){
+			GameManager.instance.hideGame();
 			StartCoroutine(CaptureScreenshot("screenshot", ScreenshotFormat.PNG));
 		}
 		// Update is called once per frame
 		void Update () {
-			if(Input.GetKeyDown("space") || Input.touchCount > 0) {
-				if(!GameManager.instance.running){
-					saveLine();
-				}
-			}
+			// if(Input.GetKeyDown("space") || Input.touchCount > 0) {
+			// 	saveLine();
+			// }
 		}
 
 		// draw line where hit in world space
