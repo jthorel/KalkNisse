@@ -659,6 +659,11 @@ Prefab:
       propertyPath: playerDup
       value: 
       objectReference: {fileID: 2098319102}
+    - target: {fileID: 50947681523605726, guid: 51f6c901693054ef697d0cad80a2f8d6,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51f6c901693054ef697d0cad80a2f8d6, type: 2}
   m_IsPrefabParent: 0
