@@ -39,4 +39,11 @@ public class GameManager : MonoBehaviour {
 		canvas.SetActive(false);
 		player.SetActive(false);
 	}
+
+	public void removeLines(){
+		GameObject[] lines = GameObject.FindGameObjectsWithTag("lineRenderer");
+		foreach(GameObject line in lines){
+			Destroy(line);
+		}
+	}
 }
