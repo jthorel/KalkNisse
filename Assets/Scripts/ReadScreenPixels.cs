@@ -259,9 +259,7 @@ namespace UnityEngine.XR.iOS
 					{
 						List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultType);
 						if (hitResults.Count > 0) {
-							foreach (var hitResult in hitResults) {
-								activeLine.UpdateLine(UnityARMatrixOps.GetPosition(hitResult.worldTransform));
-							}
+							activeLine.UpdateLine(UnityARMatrixOps.GetPosition(hitResults[0].worldTransform));
 						}
 					}
 				} else {
@@ -276,9 +274,7 @@ namespace UnityEngine.XR.iOS
 						{
 							List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultType);
 							if (hitResults.Count > 0) {
-								foreach (var hitResult in hitResults) {
-									activeLine.UpdateLine(UnityARMatrixOps.GetPosition(hitResult.worldTransform));
-								}
+								activeLine.UpdateLine(UnityARMatrixOps.GetPosition(hitResults[0].worldTransform));
 							}
 						}
 						//Vector3 pos = new Vector3(positions[i].x, positions[i].y, 0f);
