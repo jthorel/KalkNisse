@@ -14,18 +14,20 @@ namespace UnityEngine.XR.iOS
 			planePrefab = go;
 		}
 		
-		public static GameObject CreatePlaneInScene(ARPlaneAnchor arPlaneAnchor)
+		public static void CreatePlaneInScene(ARPlaneAnchor arPlaneAnchor)
 		{
 			GameObject plane;
 			if (planePrefab != null) {
-				plane = GameObject.Instantiate(planePrefab);
+				GameManager.instance.changeRunButton();
+				//plane = GameObject.Instantiate(planePrefab);
 			} else {
 				plane = new GameObject (); //put in a blank gameObject to get at least a transform to manipulate
 			}
 
-			plane.name = arPlaneAnchor.identifier;
+			//plane.name = arPlaneAnchor.identifier;
 
-			return UpdatePlaneWithAnchorTransform(plane, arPlaneAnchor);
+			return;
+			//return UpdatePlaneWithAnchorTransform(plane, arPlaneAnchor);
 
 		}
 
